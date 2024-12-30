@@ -261,16 +261,16 @@ CONQUE_FONT = {
 
 
 # regular expression matching (almost) all control sequences
-CONQUE_SEQ_REGEX = re.compile("(\x1b\[?\??#?[0-9;]*[a-zA-Z0-9@=>]|\x1b\][0-9];.*?\x07|[\x01-\x0f]|\x1b\([AB0])")
+CONQUE_SEQ_REGEX = re.compile("(\x1b\\[?\\??#?[0-9;]*[a-zA-Z0-9@=>]|\x1b\\][0-9];.*?\x07|[\x01-\x0f]|\x1b\\([AB0])")
 CONQUE_SEQ_REGEX_CTL = re.compile("^[\x01-\x0f]$")
-CONQUE_SEQ_REGEX_CSI = re.compile("^\x1b\[")
-CONQUE_SEQ_REGEX_TITLE = re.compile("^\x1b\]")
+CONQUE_SEQ_REGEX_CSI = re.compile("^\x1b\\[")
+CONQUE_SEQ_REGEX_TITLE = re.compile("^\x1b\\]")
 CONQUE_SEQ_REGEX_HASH = re.compile("^\x1b#")
 CONQUE_SEQ_REGEX_ESC = re.compile("^\x1b.$")
 CONQUE_SEQ_REGEX_CHAR = re.compile("^\x1b[()]")
 
 # match table output
-CONQUE_TABLE_OUTPUT = re.compile("^\s*\|\s.*\s\|\s*$|^\s*\+[=+-]+\+\s*$")
+CONQUE_TABLE_OUTPUT = re.compile("^\\s*\\|\\s.*\\s\\|\\s*$|^\\s*\\+[=+-]+\\+\\s*$")
 
 # basic terminal colors
 CONQUE_COLOR_SEQUENCE = (
@@ -306,7 +306,7 @@ CONQUE_SOLE_MEM_REDRAW = 1000
 CONQUE_MAX_SYNTAX_LINES = 200
 
 # windows input splitting on special keys
-CONQUE_WIN32_REGEX_VK = re.compile("(\x1b\[[0-9;]+VK)")
+CONQUE_WIN32_REGEX_VK = re.compile("(\x1b\\[[0-9;]+VK)")
 
 # windows attribute string splitting
 CONQUE_WIN32_REGEX_ATTR = re.compile("((.)\\2*)", re.DOTALL)

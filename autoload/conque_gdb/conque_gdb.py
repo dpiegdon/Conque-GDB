@@ -1,4 +1,5 @@
-import re, collections
+import re
+from collections.abc import MutableMapping
 
 # Marks that a breakpoint has been hit
 GDB_BREAK_MARK = '\x1a\x1a'
@@ -12,12 +13,12 @@ GDB_PROMPT_MARK = '\x1a\x18'
 GDB_BREAK_REGEX = re.compile('.*' + GDB_BREAK_MARK + '.*')
 
 GDB_EXIT_REGEX = re.compile('.*' + GDB_EXIT_MARK + '.*')
-
+    
 GDB_PROMPT_REGEX = re.compile('.*' + GDB_PROMPT_MARK + '.*')
 
-GET_BPS_REGEX = re.compile('(bkpt\s*?\=\s*?\{.*?(?:["].*?["])+?\s*?\]?\s*?\}(?!\s*?,\s*?\{).*?)', re.I)
+GET_BPS_REGEX = re.compile('(bkpt\\s*?\\=\\s*?\\{.*?(?:["].*?["])+?\\s*?\\]?\\s*?\\}(?!\\s*?,\\s*?\\{).*?)', re.I)
 
-GET_ATTR_STR = '\s*?\=\s*?["](.*?)["].*?'
+GET_ATTR_STR = '\\s*?\\=\\s*?["](.*?)["].*?'
 
 ATTR_LINE_REGEX = re.compile('(line' + GET_ATTR_STR + ')', re.I)
 ATTR_FILE_REGEX = re.compile('(fullname' + GET_ATTR_STR + ')', re.I)
@@ -36,7 +37,7 @@ class RegisteredBreakpoint:
     def __str__(self):
         return self.filename + ':' + self.lineno + ',' + self.enabled
 
-class RegisteredBpDict(collections.MutableMapping):
+class RegisteredBpDict(MutableMapping):
     def __init__(self):
         self.r_breaks = dict()
         self.lookups = dict()

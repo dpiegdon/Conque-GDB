@@ -395,9 +395,9 @@ class Conque(object):
             try:
                 # reset timer
                 if self.c == vim.eval('col("$")'):
-                    vim.command('call feedkeys("\<Right>", "n")')
+                    vim.command('call feedkeys("\\<Right>", "n")')
                 else:
-                    vim.command('call feedkeys("\<Right>\<Left>", "n")')
+                    vim.command('call feedkeys("\\<Right>\\<Left>", "n")')
             except:
                 pass
 
@@ -560,7 +560,7 @@ class Conque(object):
 
         syntax_name = 'ConqueHighLightAt_%d_%d_%d_%d' % (self.proc.pid, self.l, start, len(self.color_history) + 1)
         syntax_options = 'contains=ALLBUT,ConqueString,MySQLString,MySQLKeyword oneline'
-        syntax_region = 'syntax match %s /\%%%dl\%%>%dc.\{%d}\%%<%dc/ %s' % (syntax_name, buffer_line, start - 1, end - start, end + 1, syntax_options)
+        syntax_region = 'syntax match %s /\\%%%dl\\%%>%dc.\\{%d}\\%%<%dc/ %s' % (syntax_name, buffer_line, start - 1, end - start, end + 1, syntax_options)
 
         # check for cached highlight group
         hgroup = 'ConqueHL_%d' % (abs(hash(highlight)))
@@ -1125,7 +1125,7 @@ class Conque(object):
             vals = full.split(';')
             for val in vals:
 
-                val = re.sub("\D", "", val)
+                val = re.sub("\\D", "", val)
 
                 if val != '':
                     attr['vals'].append(int(val))
